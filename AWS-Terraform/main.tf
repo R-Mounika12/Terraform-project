@@ -6,12 +6,14 @@ resource "aws_subnet" "pubSub1" {
   vpc_id = aws_vpc.mvpc.id
   availability_zone = "eu-north-1a"
   cidr_block = var.pubsub1Cidr
+  map_public_ip_on_launch = true
 }
 
 resource "aws_subnet" "pubSub2" {
   vpc_id = aws_vpc.mvpc.id
   availability_zone = "eu-north-1b"
   cidr_block = var.pubsub2Cidr
+  map_public_ip_on_launch = true
 }
 
 resource "aws_internet_gateway" "mig" {
