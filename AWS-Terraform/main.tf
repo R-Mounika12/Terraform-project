@@ -72,7 +72,6 @@ resource "aws_instance" "mwebser1" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.msg.id]
   subnet_id = aws_subnet.pubSub1.id
-associate_public_ip_address = alltrue(true)
   user_data = base64encode(file("userdata.sh"))
 }
 
@@ -81,6 +80,5 @@ resource "aws_instance" "mwebser2" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.msg.id]
   subnet_id = aws_subnet.pubSub2.id
-associate_public_ip_address = alltrue(true)
   user_data = base64encode(file("userdata1.sh"))
 }
