@@ -64,7 +64,6 @@ resource "aws_security_group" "msg" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = [var.ipv4Access]
   }
 }
 
@@ -73,7 +72,8 @@ resource "aws_instance" "mwebser1" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.msg.id]
   subnet_id = aws_subnet.pubSub1.id
-  user_data = base64decode(file("userdata.sh"))
+associate_public_ip_address = alltrue(true)
+  user_data = base64encode(file("userdata.sh"))
 }
 
 resource "aws_instance" "mwebser2" {
@@ -81,5 +81,6 @@ resource "aws_instance" "mwebser2" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.msg.id]
   subnet_id = aws_subnet.pubSub2.id
-  user_data = base64decode(file("userdata1.sh"))
+associate_public_ip_address = alltrue(true)
+  user_data = base64encode(file("userdata1.sh"))
 }
